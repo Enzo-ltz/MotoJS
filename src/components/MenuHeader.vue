@@ -1,8 +1,8 @@
 <template>
-    <div id="menu">
+    <div id="menu" class="w-100">
         <div class="header row position-relative d-flex">
             <div class="header-filter top-0 start-0 h-100 w-100 position-absolute"></div>
-            <div class="d-flex flex-column text-center align-items-center justify-content-center">
+            <div class="d-flex flex-column text-center justify-content-center w-100">
                 <h1 class="menuText text-center mt-4 position-relative h-auto">La Pistonnerie</h1>
                 <p style="color:red">Le premier moteur de recherche qui trouve ce que vous voulez</p>
             </div>
@@ -13,7 +13,7 @@
 <style>
 
 .header {
-    height: 50vh;
+    height: 60vh;
     background-image: url('../images/menuHeader.jpg');
     background-size: 100%;
 }
