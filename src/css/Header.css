@@ -1,0 +1,15 @@
+.header {
+    height: 60vh;
+    background-image: url('../images/menuHeader.jpg');
+    background-size: 100%;
+}
+
+.header-filter{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.menuText {
+    font-size: 150px;
+    color: rgb(226, 81, 13);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}

@@ -5,10 +5,10 @@
         <MenuHeader />
       </div>
       <div class="row stickyMenu">
-        <MenuFilter />
+        <MenuFilter @clicked="childing"/>
       </div>
 
-      <div class="row">       
+      <div class="row">
         <DataDisplayer />
       </div>
     </div>
@@ -16,17 +16,22 @@
 </template>
 
 <script>
-import MenuHeader from "./components/MenuHeader";
-import DataDisplayer from "./components/DataDisplayer";
-import MenuFilter from "./components/MenuFilter";
+import MenuHeader from "./components/Header.vue";
+import DataDisplayer from "./components/DataDisplayer.vue";
+import MenuFilter from "./components/MenuFilter.vue";
 
 export default {
   name: "App",
   components: {
     MenuHeader,
     DataDisplayer,
-    MenuFilter
+    MenuFilter,
   },
+   methods: {
+    childing(value){
+      console.log(value)
+    }
+  }
 };
 </script>
 

@@ -1,18 +1,17 @@
 <template>
- <div class="menu w-100">
-   Bonjour
- </div>
+  <div class="menu w-100">
+    <input
+      class="form-control"
+      type="text"
+      v-model="searchQuery"
+      placeholder="Search"
+    />
+    <button v-on:click="testing">TEST</button>
+  </div>
 </template>
 
-<script>
-export default {
-  name: "MenuFilter",
- 
-};
-</script>
+<script src="../js/MenuFilter.js"/>
 
-<style scoped>
-.menu {
-  background-color: #f88400;
-}
+<style>
+  @import "../css/MenuFilter.css";
 </style>
