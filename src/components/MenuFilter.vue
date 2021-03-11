@@ -1,16 +1,17 @@
 <template>
   <div class="menu w-100">
-    <input
-      class="form-control"
-      type="text"
-      v-model="searchQuery"
-      placeholder="Search"
-    />
-    <button v-on:click="testing">TEST</button>
+    
+    BONJOUR
   </div>
 </template>
 
-<script src="../js/MenuFilter.js"/>
+<script>
+
+
+export default {
+    name: "MenuFilter"
+  };
+</script>
 
 <style>
   @import "../css/MenuFilter.css";

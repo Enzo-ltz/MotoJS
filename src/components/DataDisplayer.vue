@@ -43,9 +43,39 @@
   </div>
 </template>
 
-<script src="../js/DataDisplayer.js" />
+<script>
+import Data from "../data.json";
+import MotoDetails from "../components/MotoDetails.vue";
+
+export default {
+  name: "DataDisplayer",
+  components: {
+    MotoDetails,
+  },
+  data() {
+    return {
+      searchQuery: null,
+      motos: Data,
+      currentMoto: {},
+    };
+  },
+  computed: {
+    resultQuery() {
+      if (this.searchQuery) {
+        return this.motos.filter((moto) => {
+          return this.searchQuery
+            .toLowerCase()
+            .split(" ")
+            .every((v) => moto.model.toLowerCase().includes(v));
+        });
+      } else {
+        return this.motos;
+      }
+    },
+  },
+};
+</script>
 
 <style scoped>
-  @import "../css/DataDisplayer.css";
+@import "../css/DataDisplayer.css";
 </style>
-

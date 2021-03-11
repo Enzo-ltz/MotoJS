@@ -5,7 +5,7 @@
         <MenuHeader />
       </div>
       <div class="row stickyMenu">
-        <MenuFilter @clicked="childing"/>
+        <MenuFilter />
       </div>
 
       <div class="row">

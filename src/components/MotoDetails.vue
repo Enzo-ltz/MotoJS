@@ -21,4 +21,14 @@
         </div>
 </template>
 
-<script src="../js/MotoDetails.js" />
+<script>
+export default {
+    name: "ModalDetails",
+    props: {
+        moto: Object
+    },
+    data(){
+        return {}
+    }
+}
+</script>
