@@ -1,8 +1,5 @@
 <template>
     <div class="col-10 offset-1">
-        <div class="row">
-            <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
-        </div>
         <div class="row border p-3">
             <div class="col-lg-4 col-sm-6 my-5" align="center" v-for="moto in dataFiltered" :key="moto.id">
                 <div class="col-10 shadow p-2 moto-card" data-toggle="modal" data-target="#exampleModal" v-on:click="currentMoto = moto" >
@@ -22,7 +19,6 @@
 </template>
 
 <script>
-import Data from "../data.json";
 import MotoDetails from "../components/MotoDetails.vue";
 
 export default {
@@ -35,31 +31,8 @@ export default {
     },
     data() {
         return {
-            searchQuery: null,
-            filterType: true,
-            motos: Data,
             currentMoto: {},
         };
-    },
-    computed: {
-        resultQuery() {
-            if (this.searchQuery) {
-                return this.motos.filter((moto) => {
-                    return this.searchQuery
-                        .toLowerCase()
-                        .split(" ")
-                        .every((v) => moto.model.toLowerCase().includes(v));
-                });
-            }
-            // if (this.filterType==true) {
-            //     return this.motos.filter((moto) => {
-            //         return moto.bodyType.includes("Adventure")
-            //     });
-            // }
-            else {
-                return this.motos;
-            }
-        },
     },
 };
 </script>

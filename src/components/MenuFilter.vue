@@ -1,11 +1,8 @@
 <template>
-    <div class="menu w-100 px-3">
-        <div class="row">
+    <div class="col-10 offset-1 border">  
+        <div class="row w-50">
             <input class="form-control" type="text" v-model="searchQuery" placeholder="Search"/>
             {{searchQuery}}
-        </div>
-        <div class="row">
-            <button @click="test">Voir motos filtrée</button>
         </div>
     </div>
 </template>
@@ -41,7 +38,11 @@ export default {
                         .split(" ")
                         .every((v) => moto.model.toLowerCase().includes(v)));
                 }) )
-                
+                // if (this.filterType==true) {
+            //     return this.motos.filter((moto) => {
+            //         return moto.bodyType.includes("Adventure")
+            //     });
+            // }
             } else {
                 this.$emit("filteredData",this.motos) ;
             }
