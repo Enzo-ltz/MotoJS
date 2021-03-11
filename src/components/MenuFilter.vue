@@ -1,18 +1,16 @@
 <template>
-  <div class="menu w-100">
+    <div class="menu w-100">
     
-    BONJOUR
-  </div>
+        BONJOUR
+    </div>
 </template>
 
 <script>
-
-
 export default {
     name: "MenuFilter"
-  };
+};
 </script>
 
 <style>
-  @import "../css/MenuFilter.css";
+    @import "../css/MenuFilter.css";
 </style>
