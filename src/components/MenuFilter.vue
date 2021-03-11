@@ -23,6 +23,17 @@ export default {
     },
     watch: {
         searchQuery: function() {
+            this.resultQuery()
+        }
+    },
+    mounted(){
+        this.resultQuery()
+    },
+    methods: {
+        test(){
+            console.log(this.filteredMotos)
+        },
+        resultQuery() {
             if (this.searchQuery) {
                 this.$emit("filteredData", this.motos.filter((moto) => {
                     return(this.searchQuery
@@ -34,11 +45,7 @@ export default {
             } else {
                 this.$emit("filteredData",this.motos) ;
             }
-        }
-    },
-    methods: {
-         test(){
-            console.log(this.filteredMotos)
+        
         },
     }
 };
