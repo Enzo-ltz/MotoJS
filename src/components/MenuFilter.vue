@@ -1,13 +1,46 @@
 <template>
-    <div class="menu w-100">
-    
-        BONJOUR
+    <div class="menu w-100 px-3">
+        <div class="row">
+            <input class="form-control" type="text" v-model="searchQuery" placeholder="Search"/>
+            {{searchQuery}}
+        </div>
+        <div class="row">
+            <button @click="test">Voir motos filtrée</button>
+        </div>
     </div>
 </template>
 
 <script>
+import Data from '../data.json'
 export default {
-    name: "MenuFilter"
+    name: "MenuFilter",
+    data() {
+        return {
+            motos: Data,
+            searchQuery: "",
+            filteredMotos: null
+        }
+    },
+    watch: {
+        searchQuery: function() {
+            if (this.searchQuery) {
+                this.$emit("filteredData", this.motos.filter((moto) => {
+                    return(this.searchQuery
+                        .toLowerCase()
+                        .split(" ")
+                        .every((v) => moto.model.toLowerCase().includes(v)));
+                }) )
+                
+            } else {
+                this.$emit("filteredData",this.motos) ;
+            }
+        }
+    },
+    methods: {
+         test(){
+            console.log(this.filteredMotos)
+        },
+    }
 };
 </script>
 

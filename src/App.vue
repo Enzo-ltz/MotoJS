@@ -5,11 +5,11 @@
                 <MenuHeader />
             </div>
             <div class="row stickyMenu">
-                <MenuFilter />
+                <MenuFilter @filteredData="childing"/>
             </div>
 
             <div class="row">
-                <DataDisplayer />
+                <DataDisplayer :dataFiltered="motosFiltered" />
             </div>
         </div>
     </div>
@@ -27,9 +27,14 @@ export default {
         DataDisplayer,
         MenuFilter,
     },
+    data(){
+        return {
+            motosFiltered: null
+        }
+    },
     methods: {
         childing(value) {
-            console.log(value);
+            this.motosFiltered=value;
         },
     },
 };

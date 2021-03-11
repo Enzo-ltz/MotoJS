@@ -4,7 +4,7 @@
             <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
         </div>
         <div class="row border p-3">
-            <div class="col-lg-4 col-sm-6 my-5" align="center" v-for="moto in resultQuery" :key="moto.id">
+            <div class="col-lg-4 col-sm-6 my-5" align="center" v-for="moto in dataFiltered" :key="moto.id">
                 <div class="col-10 shadow p-2 moto-card" data-toggle="modal" data-target="#exampleModal" v-on:click="currentMoto = moto" >
                     <div>
                         {{ moto.model }}
@@ -30,9 +30,13 @@ export default {
     components: {
         MotoDetails,
     },
+    props: {
+        dataFiltered : Array
+    },
     data() {
         return {
             searchQuery: null,
+            filterType: true,
             motos: Data,
             currentMoto: {},
         };
@@ -46,7 +50,13 @@ export default {
                         .split(" ")
                         .every((v) => moto.model.toLowerCase().includes(v));
                 });
-            } else {
+            }
+            // if (this.filterType==true) {
+            //     return this.motos.filter((moto) => {
+            //         return moto.bodyType.includes("Adventure")
+            //     });
+            // }
+            else {
                 return this.motos;
             }
         },
