@@ -1,12 +1,4 @@
-/* .dropdown-menu {
-    width: 300px;
-} */
-
-.dropdown-menu.multi-column {
-    width: 400px;
-}
-
-.dropdown-menu.multi-column .dropdown-menu {
+.dropdown-menu.multi-column .dropdown-menu{
     display: block !important;
     position: static !important;
     margin: 0 !important;

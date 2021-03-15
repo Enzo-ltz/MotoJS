@@ -11,6 +11,7 @@
             <div class="modal-body">
                 <div class="row">
                     {{ moto.maximumPower}}
+                    {{ moto.Displacement }}
                 </div>
             </div>
             <div class="modal-footer">
@@ -27,8 +28,5 @@ export default {
     props: {
         moto: Object
     },
-    data(){
-        return {}
-    }
 }
 </script>
