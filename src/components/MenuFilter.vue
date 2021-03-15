@@ -1,34 +1,63 @@
 <template>
     <div class="col-10 offset-1 py-3">  
-        <div class="row border text-center">
+        <div class="row text-center">
             <div class="col-6">
                 <input class="form-control" type="text" v-model="searchQuery" placeholder="Search"/>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked v-model="orderDisplacement" value="crescent">
-                <label class="form-check-label" for="flexRadioDefault1">
-                    Croissant
-                </label>
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="orderDisplacement" value="decrescent">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Décroissant
-                </label>
+            <div class="form-check col-1 border px-0">
+                <div class="px-0">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked v-model="orderDisplacement" value="crescent">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Croissant
+                    </label>
+
+                </div>
+                <div class="px-0">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="orderDisplacement" value="decrescent">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Décroissant
+                    </label>
+                </div>
             </div>
             <div class="col-2">
-                <input class="form-control" type="text" v-model="minDisplacement" placeholder="Cylindrée"/>
                 <input type="checkbox" id="noDisplacement" value="true" v-model="noDisplacement">Aucune info
             </div>
+
+
             <div class="col-2">
                 <button class="btn-primary btn" data-toggle="dropdown">Filtres</button>
                 <div class="dropdown-menu multi-column">
                     <div class="container-fluid">
-                        <form class="dropdown-menu">
-                            <div v-for="filter in existingFilters" :key="filter" @click="stopPropagation">
-                                <label :for="filter">
-                                <input type="checkbox" :id="filter" :value="filter" v-model="filters">
-                                {{filter}}</label>
+                        <div class="row">
+                            <div class="col-6 border-right">
+                                <h6 class="dropdown-header">Types de moto</h6>
+                                <ul class="dropdown-menu">
+                                    <li v-for="filter in existingFilters" :key="filter" @click="stopPropagation">
+                                        <label :for="filter">
+                                        <input type="checkbox" :id="filter" :value="filter" v-model="filters">
+                                        {{filter}}</label>
+                                    </li>
+                                </ul>
                             </div>
-                        </form>
+                            <div class="col-6 text-center">
+                                <h6 class="dropdown-header pb-3">Cylindrées</h6>
+                                <div class="row">
+                                    <div class="col-3 pr-0 pl-2 align-self-center">Min :</div>
+                                    <div class="col-9">
+                                        <input class="form-control " type="text" v-model="minDisplacement" placeholder="Cylindrée"/>
+                                    </div>
+                                    <div class="col-3 pr-0 pl-2 align-self-center">Max : </div>
+                                    <div class="col-9">
+                                        <input class="form-control" type="text" v-model="maxDisplacement" placeholder="Cylindrée"/>
+                                    </div>
+                                </div>
+                                <div class="row pt-3">
+                                    <div class="col-12 pl-2">
+                                        Afficher les 2 roues sans cylindrée renseignée : <input type="checkbox" id="noDisplacement" value="true" v-model="noDisplacement">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,6 +106,7 @@ export default {
                 "Electric"
             ],
             minDisplacement: null,
+            maxDisplacement: null,
             noDisplacement: false,
             orderDisplacement: "crescent",
         }
@@ -89,6 +119,9 @@ export default {
             this.resultQuery()
         },
         minDisplacement: function() {
+            this.resultQuery()
+        },
+        maxDisplacement: function() {
             this.resultQuery()
         },
         noDisplacement: function() {
@@ -106,17 +139,6 @@ export default {
             element.stopPropagation()
         },
         test(){
-            var items = [
-            { name: "Edward", value: 21 },
-            { name: "Sharpe", value: 37 },
-            { name: "And", value: 45 },
-            { name: "The", value: -12 },
-            { name: "Magnetic", value: 13 },
-            { name: "Zeros", value: 37 }
-            ];
-            console.log(items.sort(function (a, b) {
-            return a.value - b.value;
-            }))
         },
 
         resultQuery() {
@@ -155,7 +177,12 @@ export default {
             return false
         },
         checkDisplacement(moto){
-            if ((parseFloat(moto.Displacement) > this.minDisplacement) || ((isNaN(parseFloat(moto.Displacement))) && (this.noDisplacement==true)) ){
+            let maxDisplacement = this.maxDisplacement
+            if (maxDisplacement == undefined || maxDisplacement=="" ) {
+                maxDisplacement=5000
+            }
+            if (((parseFloat(moto.Displacement) > this.minDisplacement) && parseFloat(moto.Displacement) < maxDisplacement) 
+                || ((isNaN(parseFloat(moto.Displacement))) && (this.noDisplacement==true)) ){
                 return true
             }
             return false
