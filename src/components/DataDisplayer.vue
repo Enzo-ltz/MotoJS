@@ -1,6 +1,6 @@
 <template>
-    <div class="col-10 offset-1">
-        <div class="row border p-3">
+    <div class="col-10 offset-1 " style="z-index:100;">
+        <div class="row p-3">
             <div class="col-lg-4 col-sm-6 my-5" align="center" v-for="moto in dataFiltered" :key="moto.id">
                 <div class="col-10 shadow p-2 moto-card" data-toggle="modal" data-target="#exampleModal" v-on:click="currentMoto = moto" >
                     <div>

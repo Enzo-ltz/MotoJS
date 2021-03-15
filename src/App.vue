@@ -49,6 +49,8 @@ export default {
 
 .stickyMenu {
     position: sticky;
+    background-color: rgba(255, 206, 122, 0.85);
     top: 0px;
+    z-index: 1000;
 }
 </style>

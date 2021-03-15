@@ -1,10 +1,23 @@
 <template>
-    <div class="col-10 offset-1 border">  
-        <input class="form-control" type="text" v-model="searchQuery" placeholder="Search"/>
-        <div class="d-flex justify-content-around text-center">
-            <div v-for="filter in existingFilters" :key="filter">
-                <input type="checkbox" :id="filter" :value="filter" v-model="filters">
-                <label :for="filter">{{filter}}</label>
+
+    <div class="col-10 offset-1 text-center py-3">  
+        <div class="row">
+            <div class="col-6">
+                <input class="form-control" type="text" v-model="searchQuery" placeholder="Search"/>
+            </div>
+            <div class="col-6">
+                <button class="btn-primary btn" data-toggle="dropdown">Filtres</button>
+                <div class="dropdown-menu multi-column">
+                    <div class="container-fluid">
+                        <form class="dropdown-menu">
+                            <div v-for="filter in existingFilters" :key="filter" @click="stopPropagation">
+                                <label :for="filter">
+                                <input type="checkbox" :id="filter" :value="filter" v-model="filters">
+                                {{filter}}</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -64,6 +77,9 @@ export default {
         this.resultQuery()
     },
     methods: {
+        stopPropagation(element){
+            element.stopPropagation()
+        },
         test(){
             console.log(this.filteredMotos)
         },
