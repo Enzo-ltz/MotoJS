@@ -3,6 +3,13 @@
   background-color: rgba(248, 132, 0, 1);
 }
 
+.moto-card-image{
+  height: 400px;
+  width: 300px;
+}
+
+
+
 .moto-card:hover{
   opacity: 0.7; 
   cursor: pointer;

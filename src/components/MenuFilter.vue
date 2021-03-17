@@ -1,6 +1,9 @@
 <template>
     <div class="col-10 offset-1 py-3">  
         <div class="row text-center">
+            <div>
+                <button @click="test">TEST</button>
+            </div>
             <div class="col-6">
                 <input class="form-control" type="text" v-model="searchQuery" placeholder="Search"/>
             </div>
@@ -67,6 +70,8 @@
 
 <script>
 import Data from '../data.json'
+import axios from 'axios'
+
 export default {
     name: "MenuFilter",
     data() {
@@ -132,13 +137,35 @@ export default {
         }
     },
     mounted(){
+        this.setImages()
         this.resultQuery()
     },
     methods: {
         stopPropagation(element){
             element.stopPropagation()
         },
+        setImages(){
+            let promises = [];
+            let key = null
+            for (let moto of this.motos) {
+                promises.push(
+                    axios.get("https://pixabay.com/api/?key="+key+"&q=" + moto.model.replaceAll(" ","+") + "&image_type=photo").then(response => {
+                       if (response.data.total > 0){
+                           moto.image=response.data.hits[0].webformatURL
+                           console.log(moto)
+                       }
+                       else {
+                           console.log("Pas d'image")
+                       }
+                    })
+                )
+            }
+
+            Promise.all(promises).then(() => this.test);
+        },
         test(){
+
+            console.log(this.motos)
         },
 
         resultQuery() {
