@@ -8,6 +8,8 @@ MotoJS est un comparateur de moto basé sur le framework VueJS
 
 Vue : npm install -g @vue/cli @vue/cli-service-global
 
+npm install
+
 ### Démarrage :
 
-vue serve
+npm run dev
