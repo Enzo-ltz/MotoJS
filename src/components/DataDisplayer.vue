@@ -3,14 +3,19 @@
         <div class="row p-3">
             <div class="col-lg-4 col-sm-6 my-5" align="center" v-for="moto in dataFiltered" :key="moto.id">
                 <div class="col-10 shadow p-2 moto-card" data-toggle="modal" data-target="#exampleModal" v-on:click="currentMoto = moto" >
-                    <div v-if="moto.image" class="w-100">
+                    <div v-if="moto.image" class="w-100 moto-card-image ">
                         <img :src="moto.image" class="w-100 h-100">
                     </div>
-                    <div>
-                        {{ moto.model }}
-                    </div>
-                    <div>
-                        {{ moto.bodyType }}
+                    <div class="border-top mx-5 border-secondary">
+                        <div>
+                            {{ moto.model }}
+                        </div>
+                        <div>
+                            {{ moto.bodyType }}
+                        </div>
+                        <div>
+                            {{ moto.Displacement}}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,33 +1,21 @@
 <template>
-    <div class="col-10 offset-1 py-3">  
+    <div class="col-10 offset-2 py-3">  
         <div class="row text-center">
-            <div>
-                <button @click="test">TEST</button>
+            <div class="col-6 align-self-center">
+                <input class="form-control" type="text" v-model="searchQuery" placeholder="Rechercher"/>
             </div>
-            <div class="col-6">
-                <input class="form-control" type="text" v-model="searchQuery" placeholder="Search"/>
-            </div>
-            <div class="form-check col-1 border px-0">
+            <div class="form-check col-1 offset-1 text-left">
                 <div class="px-0">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked v-model="orderDisplacement" value="crescent">
-                    <label class="form-check-label" for="flexRadioDefault1">
                         Croissant
-                    </label>
-
                 </div>
+
                 <div class="px-0">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="orderDisplacement" value="decrescent">
-                    <label class="form-check-label" for="flexRadioDefault2">
                         Décroissant
-                    </label>
                 </div>
             </div>
-            <div class="col-2">
-                <input type="checkbox" id="noDisplacement" value="true" v-model="noDisplacement">Aucune info
-            </div>
-
-
-            <div class="col-2">
+            <div class="col-2 align-self-center">
                 <button class="btn-primary btn" data-toggle="dropdown">Filtres</button>
                 <div class="dropdown-menu multi-column">
                     <div class="container-fluid">
@@ -146,7 +134,7 @@ export default {
         },
         setImages(){
             let promises = [];
-            let key = null
+            let key = "20704249-0bbe5554eafecac7ea257d895"
             for (let moto of this.motos) {
                 promises.push(
                     axios.get("https://pixabay.com/api/?key="+key+"&q=" + moto.model.replaceAll(" ","+") + "&image_type=photo").then(response => {
@@ -155,19 +143,14 @@ export default {
                            console.log(moto)
                        }
                        else {
-                           console.log("Pas d'image")
+                           moto.image="https://upload.wikimedia.org/wikipedia/commons/e/e6/Pas_d%27image_disponible.svg"
                        }
                     })
                 )
             }
 
-            Promise.all(promises).then(() => this.test);
+            Promise.all(promises).then(this.resultQuery);
         },
-        test(){
-
-            console.log(this.motos)
-        },
-
         resultQuery() {
             let motoFiltered = this.motos
             if (this.searchQuery) {
