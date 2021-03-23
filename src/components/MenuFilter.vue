@@ -140,7 +140,6 @@ export default {
                     axios.get("https://pixabay.com/api/?key="+key+"&q=" + moto.model.replaceAll(" ","+") + "&image_type=photo").then(response => {
                        if (response.data.total > 0){
                            moto.image=response.data.hits[0].webformatURL
-                           console.log(moto)
                        }
                        else {
                            moto.image="https://upload.wikimedia.org/wikipedia/commons/e/e6/Pas_d%27image_disponible.svg"
