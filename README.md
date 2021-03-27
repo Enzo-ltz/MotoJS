@@ -1,6 +1,6 @@
 # MotoJS 
 
-MotoJS est un comparateur de moto basé sur le framework VueJS
+MotoJS est un site de recherche de moto basé sur le framework VueJS
 
 ## Installation 
 
